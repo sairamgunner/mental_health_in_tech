@@ -18,6 +18,11 @@ def procuringRequiredDataFrame(df):
                                        else 'Europe' if x in europe else 'Africa' if x in africa
                                        else 'Australia NZ' for x in requiredDF['Country']]
 
-    groupedDF = requiredDF.groupby('geographic_region')
-    groupedDF.apply(lambda x: x[x['treatment'] == 'Yes'].count()).reset_index()
-    print(groupedDF)
+    return requiredDF
+
+def analyzingFamilyHistoryPerRegion(requiredDF):
+    family_history_df = requiredDF.loc[requiredDF['family_history'] == 'Yes']
+    # print(family_history_df)
+    grouped_fam_history_geo_df = family_history_df.groupby('geographic_region')['family_history'].count().reset_index()
+    # print(grouped_fam_history_geo_df)
+    return grouped_fam_history_geo_df
