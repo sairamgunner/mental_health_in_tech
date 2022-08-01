@@ -1,6 +1,9 @@
 import services as s
 
+s.dropUnwantedColumns(['Timestamp', 'comments', 'state'])
 s.cleanGenderColumn()
 s.cleanAgeColumn()
-s.printUniqueValues()
+s.cleanNoEmployeesColumn()
+s.removeNullData()
+# s.printUniqueValues()
 

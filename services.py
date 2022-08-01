@@ -3,6 +3,9 @@ import numpy as np
 
 df = pd.read_csv('mental_health_in_tech\survey-csv.csv')
 
+def dropUnwantedColumns(unwantedColumns):
+    df.drop(unwantedColumns, axis=1, inplace=True)
+
 def cleanGenderColumn():
     '''
     In this function, we will replace the unwanted values in the 'Gender' column
@@ -34,6 +37,12 @@ def cleanAgeColumn():
     df['Age'] = df['Age'].abs()
     df.drop(df[df['Age'] > 99].index, inplace=True)
     print(df['Age'].unique())
+
+def removeNullData():
+    df.fillna('Unknown', inplace=True)
+
+def cleanNoEmployeesColumn():
+    df['no_employees'] = df['no_employees'].replace(['25-Jun', '5-Jan'], 'Unknown')
 
 def printUniqueValues():
     for col in df.columns:
