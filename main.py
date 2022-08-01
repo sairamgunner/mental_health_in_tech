@@ -17,12 +17,15 @@ clean_df = cs.removeNullData()
 
 required_df = ansv.procuringRequiredDataFrame(clean_df)
 
-# Analyzing mental illness family history per geographic region
+###### Analyzing mental illness family history per geographic region #####
 fam_history_per_geo_region = ansv.analyzingFamilyHistoryPerRegion(required_df)
-print(fam_history_per_geo_region)
+# print(fam_history_per_geo_region)
 
 fam_history_per_geo_region.plot.bar(x="geographic_region", y="family_history")
-plt.show()
+# plt.show()
+
+##### Analyzing mental ilness interference in work in tech and non-tech firms by geographic region ###### 
+ansv.analyzingWorkInterferenceInTechAndNonTechPerRegion(required_df)
 
 
 

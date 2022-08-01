@@ -11,6 +11,7 @@ europe = ['United Kingdom', 'Bulgaria', 'France', 'Portugal', 'Netherlands', 'Sw
 africa = ['South Africa', 'Zimbabwe', 'Israel', 'Nigeria']
 australia_nz = ['Australia', 'New Zealand']
 
+#------------------------------------------------------------------------------------------------------------------------------------#
 def procuringRequiredDataFrame(df):
     requiredDF = df
     requiredDF['geographic_region'] = ['North America' if x in north_america else 'South America' if x in south_america 
@@ -20,9 +21,19 @@ def procuringRequiredDataFrame(df):
 
     return requiredDF
 
+#------------------------------------------------------------------------------------------------------------------------------------#
 def analyzingFamilyHistoryPerRegion(requiredDF):
     family_history_df = requiredDF.loc[requiredDF['family_history'] == 'Yes']
-    # print(family_history_df)
     grouped_fam_history_geo_df = family_history_df.groupby('geographic_region')['family_history'].count().reset_index()
-    # print(grouped_fam_history_geo_df)
+
     return grouped_fam_history_geo_df
+
+#------------------------------------------------------------------------------------------------------------------------------------#
+def analyzingWorkInterferenceInTechAndNonTechPerRegion(requiredDF):
+    grouped_work_not_in_tech_per_region_df = requiredDF.loc[(requiredDF['tech_company'] != 'Yes') & (requiredDF['work_interfere'] == 'Often')]
+    grouped_work_not_in_tech_per_region_df = grouped_work_not_in_tech_per_region_df.groupby(['geographic_region', 'work_interfere'])['tech_company'].count().reset_index()
+    print(grouped_work_not_in_tech_per_region_df)
+
+    grouped_work_in_tech_per_region_df = requiredDF.loc[(requiredDF['tech_company'] == 'Yes') & (requiredDF['work_interfere'] == 'Often')]
+    grouped_work_in_tech_per_region_df = grouped_work_in_tech_per_region_df.groupby(['geographic_region', 'work_interfere'])['tech_company'].count().reset_index()
+    print(grouped_work_in_tech_per_region_df)
