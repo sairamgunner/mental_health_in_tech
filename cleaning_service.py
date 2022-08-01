@@ -25,9 +25,6 @@ def cleanGenderColumn():
     df['Gender'] = np.where((df['Gender'] != 'Male') & (df['Gender'] != 'Non-binary'), 
                             'Female', df['Gender'])
 
-    print('The Gender column has been cleaned')
-    print('The values of the Gender column are: \n', df['Gender'].unique())
-
 #------------------------------------------------------------------------------------------------------------------#
 def cleanAgeColumn():
     '''
@@ -36,11 +33,11 @@ def cleanAgeColumn():
     '''
     df['Age'] = df['Age'].abs()
     df.drop(df[df['Age'] > 99].index, inplace=True)
-    print(df['Age'].unique())
 
 #------------------------------------------------------------------------------------------------------------------#
 def removeNullData():
     df.fillna('Unknown', inplace=True)
+    return df
 
 #------------------------------------------------------------------------------------------------------------------#
 def cleanNoEmployeesColumn():
