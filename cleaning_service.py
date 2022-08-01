@@ -1,3 +1,5 @@
+##### WE ARE USING THIS FILE TO WRITE ALL THE FUNCTIONS THAT WE ARE USING TO CLEAN THE DATASET #####
+
 import pandas as pd
 import numpy as np
 

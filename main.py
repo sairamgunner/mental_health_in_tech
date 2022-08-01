@@ -4,6 +4,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 pd.set_option("display.max_columns", 50)
+##############################################################################################################################################
+#####################################################   CLEANING THE DATA   ##################################################################
+##############################################################################################################################################
 
 cs.dropUnwantedColumns(['Timestamp', 'comments', 'state'])
 cs.cleanGenderColumn()
@@ -17,15 +20,33 @@ clean_df = cs.removeNullData()
 
 required_df = ansv.procuringRequiredDataFrame(clean_df)
 
-###### Analyzing mental illness family history per geographic region #####
+##############################################################################################################################################
+#########################################################    ANALYZING THE DATA    ###########################################################
+##############################################################################################################################################
+
+
+##### Analyzing mental illness family history per geographic region #####
 fam_history_per_geo_region = ansv.analyzingFamilyHistoryPerRegion(required_df)
-# print(fam_history_per_geo_region)
+print(fam_history_per_geo_region)
 
 fam_history_per_geo_region.plot.bar(x="geographic_region", y="family_history")
-# plt.show()
+plt.show()
 
 ##### Analyzing mental ilness interference in work in tech and non-tech firms by geographic region ###### 
-ansv.analyzingWorkInterferenceInTechAndNonTechPerRegion(required_df)
+dfs = ansv.analyzingWorkInterferenceInTechAndNonTechPerRegion(required_df)
+
+df_not_in_tech = dfs[0]
+df_in_tech = dfs[1]
+
+df_not_in_tech.plot.bar(x='geographic_region', y='tech_company', title='People with mental illness interference in Tech')
+plt.show()
+
+df_in_tech.plot.bar(x='geographic_region', y='tech_company', title='People with mental illness interference Not in Tech')
+plt.show()
+
+##############################################################################################################################################
+##############################################################################################################################################
+##############################################################################################################################################
 
 
 

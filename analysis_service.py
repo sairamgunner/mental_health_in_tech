@@ -1,4 +1,4 @@
-import pandas as pd
+###### WE ARE USING THIS FILE TO WRITE ALL THE FUNCTIONS THAT WE USE FOR THE ANALYSIS PURPOSE ######
 
 north_america = ['United States', 'Canada']
 south_america = ['Brazil', 'Costa Rica', 'Colombia', 'Uruguay']
@@ -37,3 +37,5 @@ def analyzingWorkInterferenceInTechAndNonTechPerRegion(requiredDF):
     grouped_work_in_tech_per_region_df = requiredDF.loc[(requiredDF['tech_company'] == 'Yes') & (requiredDF['work_interfere'] == 'Often')]
     grouped_work_in_tech_per_region_df = grouped_work_in_tech_per_region_df.groupby(['geographic_region', 'work_interfere'])['tech_company'].count().reset_index()
     print(grouped_work_in_tech_per_region_df)
+
+    return [grouped_work_not_in_tech_per_region_df, grouped_work_in_tech_per_region_df]
