@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv('mental_health_in_tech\survey-csv.csv')
+df = pd.read_csv('survey-csv.csv')
 
 #------------------------------------------------------------------------------------------------------------------#
 def dropUnwantedColumns(unwantedColumns):
